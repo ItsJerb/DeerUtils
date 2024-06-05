@@ -1,0 +1,221 @@
+name: DeerUtils
+version: '${project.version}'
+main: me.jerb.deerutils.DeerUtils
+api-version: '1.20'
+prefix: DeerUtils
+authors: [ItsJerb]
+description: A plugin that brings most essentials into your server!
+website: jerb.me
+commands:
+  tpa:
+    description: "Asks a player if someone can teleport to them"
+    usage: "/tpa <player>"
+    aliases: [tpask]
+    permission: deerutils.tpa
+    permission-message: "You do not have permission to tpa to that player"
+
+  tpahere:
+    description: "Asks a player if they want to teleport to you"
+    usage: "/tpahere"
+    aliases: [tpah]
+    permission: deerutils.tpahere
+    permission-message: "You do not have permission to ask that player to teleport to you"
+
+  tpaccept:
+    description: "Accepts a teleport request"
+    usage: "/tpaccept"
+    permission: deerutils.tpaccept
+    permission-message: "You cannot accept teleport requests"
+
+  clearinventory:
+    description: "Clears the user's inventory"
+    usage: "/clearinventory"
+    aliases: [ci]
+    permission: deerutils.clearinventory
+    permission-message: "You do not have permission to clear your inventory"
+
+  tpall:
+    description: "Teleports every player to you"
+    usage: "/tpall"
+    permission: deerutils.tpall
+    permission-message: "You cannot use that command"
+
+  tptoggle:
+    description: "Toggles the ability for players to ask to teleport to you"
+    usage: "/tptoggle"
+    permission: deerutils.tptoggle
+    permission-message: "You cannot toggle your teleport requests"
+
+  gamemode:
+    description: "Sets the player's gamemode"
+    usage: "/gamemode [creative, adventure, spectator, survival]"
+    aliases: [gm]
+    permission: deerutils.gamemode
+    permission-message: "You do not have permission to change your gamemode"
+
+  creative:
+    description: "Sets the player's gamemode to creative"
+    usage: "/creative"
+    permission: deerutils.creative
+    permission-message: "You do not have permission to set your gamemode as creative"
+
+  adventure:
+    description: "Sets the player's gamemode to adventure"
+    usage: "/adventure"
+    permission: deerutils.adventure
+    permission-message: "You do not have permission to set your gamemode as adventure"
+
+  spectator:
+    description: "Sets the player's gamemode to spectator"
+    usage: "/spectator"
+    permission: deerutils.spectator
+    permission-message: "You do not have permission to set your gamemode as spectator"
+
+  survival:
+    description: "Sets the player's gamemode to survival"
+    usage: "/survival"
+    permission: deerutils.survival
+    permission-message: "You do not have permission to set your gamemode as survival"
+
+  fly:
+    description: "Allows a player to fly"
+    usage: "/fly"
+    permission: deerutils.fly
+    permission-message: "You cannot fly"
+
+  kick:
+    description: "Kicks the target player"
+    usage: "/kick"
+    permission: deerutils.kick
+    permission-message: "You cannot kick players"
+
+  ban:
+    description: "Bans the target player"
+    usage: "/ban"
+    permission: deerutils.ban
+    permission-message: "You cannot ban players"
+
+  banip:
+    description: "Bans the player's IP address"
+    usage: "/banip"
+    permission: deerutils.banip
+    permission-message: "You cannot ban player IPs"
+
+  banlist:
+    description: "Shows a list of banned players"
+    usage: "/banlist"
+    permission: deerutils.banlist
+    permission-message: "You cannot view the server's banned players"
+
+  nickname:
+    description: "Sets a nickname for yourself"
+    usage: "/nickname [nickname]"
+    aliases: [nick]
+    permission: deerutils.nickname
+    permission-message: "You cannot set a nickname for yourself"
+
+  rules:
+    description: "Views the server rules"
+    usage: "/rules"
+    permission: deerutils.rules
+    permission-message: "You cannot view the server's rules"
+
+  warp:
+    description: "Teleports the player to a world warp"
+    usage: "/warp [warp]"
+    permission: deerutils.warp
+    permission-message: "You cannot use warps"
+
+  setwarp:
+    description: "Sets a world warp"
+    usage: "/setwarp [warp] [description]"
+    permission: deerutils.setwarp
+    permission-message: "You cannot set world warps"
+
+  delwarp:
+    description: "Deletes a world warp"
+    usage: "/delwarp [warp]"
+    permission: deerutils.delwarp
+    permission-message: "You cannot delete warps"
+
+  renamewarp:
+    description: "Renames an existing warp"
+    usage: "/renamewarp [warp] [name]"
+    permission: deerutils.renamewarp
+    permission-message: "You cannot rename warps"
+
+  warps:
+    description: "Lists all available warps"
+    usage: "/warps"
+    permission: deerutils.warps
+    permission-message: "You cannot view this server's warps"
+
+  msg:
+    description: "Messages a player"
+    usage: "/msg [player] [message]"
+    aliases: [w, pm, t, m]
+    permission: deerutils.msg
+    permission-message: "You cannot message players"
+
+  reply:
+    description: "Replies to a player's message"
+    usage: "/r [message]"
+    aliases: [r]
+    permission: deerutils.reply
+    permission-message: "You cannot reply to messages"
+
+  broadcast:
+    description: "Broadcasts a message to all players as the server"
+    usage: "/broadcast [message]"
+    aliases: [bc]
+    permission: deerutils.broadcast
+    permission-message: "You cannot broadcast messages"
+
+  kill:
+    description: "Kills yourself or a player"
+    usage: "/kill"
+    aliases: [suicide]
+    permission: deerutils.kill
+    permission-message: "You cannot kill players"
+
+  back:
+    description: "Teleports yourself to your last known location"
+    usage: "/back"
+    permission: deerutils.back
+    permission-message: "You cannot teleport back to that location"
+
+  afk:
+    description: "Sets your status as AFK"
+    usage: "/afk"
+    permission: deerutils.afk
+    permission-message: "You cannot set yourself as AFK"
+
+  home:
+    description: "Teleports you to a set home location"
+    usage: "/home [home]"
+    permission: deerutils.home
+    permission-message: "You cannot teleport to homes"
+
+  sethome:
+    description: "Sets a home at your location"
+    usage: "/sethome [name]"
+    permission: deerutils.sethome
+    permission-message: "You cannot set homes"
+
+  delhome:
+    description: "Deletes a home"
+    usage: "/delhome [name]"
+    permission: deerutils.delhome
+    permission-message: "You cannot delete homes"
+
+  renamehome:
+    description: "Renames a home"
+    usage: "/renamehome [home] [name]"
+    permission: deerutils.renamehome
+    permission-message: "You cannot rename homes"
+
+  head:
+    description: "Gives yourself a player's head"
+    usage: "/head [player]"
+    permission: deerutils.head
+    permission-message: "You cannot give yourself player heads"
