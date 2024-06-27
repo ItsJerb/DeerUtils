@@ -17,24 +17,25 @@ object MessageUtils {
     }
 
     fun targetPM(targetPlayer: Player, sender: Player, message: String) {
-        val targetPM =
-            Component.text("[").color(TextColor.fromHexString("#8f8c79"))
-                .append(Component.text("$sender")).color(NamedTextColor.WHITE)
-                .append(Component.text(" → ")).color(TextColor.fromHexString("#8f8c79"))
-                .append(Component.text("me")).color(NamedTextColor.WHITE)
-                .append(Component.text("] ").color(TextColor.fromHexString("#8f8c79"))
-                .append(Component.text(message).color(NamedTextColor.WHITE)))
+        val senderName = sender.name
+        val targetPM = Component.text("[", TextColor.fromHexString("#8f8c79"))
+            .append(Component.text(senderName, NamedTextColor.WHITE))
+            .append(Component.text(" → ", TextColor.fromHexString("#8f8c79")))
+            .append(Component.text("me", NamedTextColor.WHITE))
+            .append(Component.text("] ", TextColor.fromHexString("#8f8c79")))
+            .append(Component.text(message, NamedTextColor.WHITE))
         targetPlayer.sendMessage(targetPM)
     }
 
     fun senderPM(sender: Player, targetPlayer: Player, message: String) {
-        val senderPM =
-            Component.text("[").color(TextColor.fromHexString("#8f8c79"))
-                .append(Component.text("me")).color(NamedTextColor.WHITE)
-                .append(Component.text(" → ")).color(TextColor.fromHexString("#8f8c79"))
-                .append(Component.text("$targetPlayer").color(NamedTextColor.WHITE)
-                .append(Component.text("] ").color(TextColor.fromHexString("#8f8c79"))
-                .append(Component.text(message).color(NamedTextColor.WHITE))))
+        val targetName = targetPlayer.name
+        val senderPM = Component.text("[", TextColor.fromHexString("#8f8c79"))
+            .append(Component.text("me", NamedTextColor.WHITE))
+            .append(Component.text(" → ", TextColor.fromHexString("#8f8c79")))
+            .append(Component.text(targetName, NamedTextColor.WHITE))
+            .append(Component.text("] ", TextColor.fromHexString("#8f8c79")))
+            .append(Component.text(message, NamedTextColor.WHITE))
+            .toBuilder()
         sender.sendMessage(senderPM)
     }
 }

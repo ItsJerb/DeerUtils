@@ -7,8 +7,18 @@ import org.bukkit.plugin.java.JavaPlugin
 
 class DeerUtils : JavaPlugin() {
     private var luckPerms : LuckPerms? = null
+    private lateinit var teleporting: Teleporting
     override fun onEnable() {
-        // Plugin startup logic
+        teleporting = Teleporting()
+        this.getCommand("spawn")?.setExecutor(teleporting)
+        this.getCommand("tpa")?.setExecutor(teleporting)
+        this.getCommand("tpaccept")?.setExecutor(teleporting)
+        this.getCommand("tptoggle")?.setExecutor(teleporting)
+        this.getCommand("back")?.setExecutor(teleporting)
+        this.getCommand("sethome")?.setExecutor(teleporting)
+        this.getCommand("delhome")?.setExecutor(teleporting)
+        this.getCommand("home")?.setExecutor(teleporting)
+        this.getCommand("homes")?.setExecutor(teleporting)
         luckPerms = LuckPermsProvider.get()
 
         if (luckPerms == null) {
@@ -21,12 +31,13 @@ class DeerUtils : JavaPlugin() {
     }
 
     private fun registerCommands() {
-        getCommand("tpa")?.setExecutor(TpaCommand())
-        getCommand("tpaccept")?.setExecutor(TpAcceptCommand(TpaCommand()))
-        getCommand("gamemode")?.setExecutor(Gamemode())
-        getCommand("kick")?.setExecutor(Kick())
-        getCommand("warp")?.setExecutor(Warp())
-        getCommand("home")?.setExecutor(Homes())
+        getCommand("gamemode")?.setExecutor(Admin())
+        getCommand("kick")?.setExecutor(Admin())
+        getCommand("warp")?.setExecutor(Teleporting())
+        getCommand("setwarp")?.setExecutor(Teleporting())
+        getCommand("delwarp")?.setExecutor(Teleporting())
+        getCommand("renamewarp")?.setExecutor(Teleporting())
+        getCommand("warps")?.setExecutor(Teleporting())
         getCommand("msg")?.setExecutor(Messaging())
         getCommand("reply")?.setExecutor(Messaging())
     }

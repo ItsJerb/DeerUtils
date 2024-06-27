@@ -51,6 +51,10 @@ class Messaging : CommandExecutor, TabCompleter {
                 MessageUtils.senderPM(sender, targetPlayer, message)
                 lastMessenger[sender] = targetPlayer
             }
+
+            "afk" -> {
+
+            }
         }
         return true
     }
