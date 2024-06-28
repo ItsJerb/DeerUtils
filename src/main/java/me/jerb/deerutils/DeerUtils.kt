@@ -1,15 +1,20 @@
 package me.jerb.deerutils
 
 import me.jerb.deerutils.commands.*
+import me.jerb.deerutils.listeners.PlayerEvents
 import net.luckperms.api.LuckPerms
 import net.luckperms.api.LuckPermsProvider
 import org.bukkit.plugin.java.JavaPlugin
 
 class DeerUtils : JavaPlugin() {
-    private var luckPerms : LuckPerms? = null
+    private lateinit var luckPerms : LuckPerms
     private lateinit var teleporting: Teleporting
+    private  lateinit var admin: Admin
+    private lateinit var messaging: Messaging
     override fun onEnable() {
         teleporting = Teleporting()
+        admin = Admin()
+        messaging = Messaging()
         this.getCommand("spawn")?.setExecutor(teleporting)
         this.getCommand("tpa")?.setExecutor(teleporting)
         this.getCommand("tpaccept")?.setExecutor(teleporting)
@@ -19,6 +24,17 @@ class DeerUtils : JavaPlugin() {
         this.getCommand("delhome")?.setExecutor(teleporting)
         this.getCommand("home")?.setExecutor(teleporting)
         this.getCommand("homes")?.setExecutor(teleporting)
+        this.getCommand("warp")?.setExecutor(teleporting)
+        this.getCommand("setwarp")?.setExecutor(teleporting)
+        this.getCommand("delwarp")?.setExecutor(teleporting)
+        this.getCommand("renamewarp")?.setExecutor(teleporting)
+        this.getCommand("warps")?.setExecutor(teleporting)
+        this.getCommand("gamemode")?.setExecutor(admin)
+        this.getCommand("kick")?.setExecutor(admin)
+        this.getCommand("msg")?.setExecutor(messaging)
+        this.getCommand("reply")?.setExecutor(messaging)
+        this.getCommand("afk")?.setExecutor(messaging)
+        this.getCommand("broadcast")?.setExecutor(messaging)
         luckPerms = LuckPermsProvider.get()
 
         if (luckPerms == null) {
@@ -26,20 +42,8 @@ class DeerUtils : JavaPlugin() {
             server.pluginManager.disablePlugin(this)
         }
         logger.info("LuckPerms found and initialized!")
+        server.pluginManager.registerEvents(PlayerEvents(this, luckPerms), this)
         logger.info("DeerUtils has been loaded!")
-        registerCommands()
-    }
-
-    private fun registerCommands() {
-        getCommand("gamemode")?.setExecutor(Admin())
-        getCommand("kick")?.setExecutor(Admin())
-        getCommand("warp")?.setExecutor(Teleporting())
-        getCommand("setwarp")?.setExecutor(Teleporting())
-        getCommand("delwarp")?.setExecutor(Teleporting())
-        getCommand("renamewarp")?.setExecutor(Teleporting())
-        getCommand("warps")?.setExecutor(Teleporting())
-        getCommand("msg")?.setExecutor(Messaging())
-        getCommand("reply")?.setExecutor(Messaging())
     }
 
     override fun onDisable() {

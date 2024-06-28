@@ -203,6 +203,11 @@ class Teleporting : CommandExecutor, TabCompleter {
 
             "warps" -> {
                 val warps = warpList.keys.joinToString(", ")
+
+                if (warpList.isEmpty()) {
+                    MessageUtils.formattedMessage(sender, "There aren't any warps yet!")
+                    return true
+                }
                 MessageUtils.formattedMessage(sender, "Warps: $warps")
             }
 

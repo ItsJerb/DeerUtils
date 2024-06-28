@@ -4,11 +4,14 @@ import me.jerb.deerutils.utils.MessageUtils
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
+import org.bukkit.Material
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.SkullMeta
 
 class Admin : CommandExecutor, TabCompleter {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
@@ -65,6 +68,32 @@ class Admin : CommandExecutor, TabCompleter {
                 MessageUtils.formattedMessage(sender, "${target.name} has been kicked for: $reason")
                 return true
             }
+
+//            "head" -> {
+//                if (args.isEmpty()) {
+//                    MessageUtils.formattedMessage(sender, "Usage: /head <player>")
+//                    return true
+//                }
+//
+//                val playerHeadName = args[0]
+//                val offlinePlayer = Bukkit.getOfflinePlayer(playerHeadName)
+//
+//                if (offlinePlayer.hasPlayedBefore() || offlinePlayer.name != null) {
+//                    val playerHead = ItemStack(Material.PLAYER_HEAD)
+//                    val skullMetadata = playerHead.itemMeta as SkullMeta
+//                    skullMetadata.owningPlayer = offlinePlayer
+//                    playerHead.itemMeta = skullMetadata
+//
+//                    val inventory = sender.inventory
+//                    if (inventory.firstEmpty() != -1) {
+//                        inventory.addItem(playerHead)
+//                        MessageUtils.formattedMessage(sender, "You were given the head of ${playerHeadName}!")
+//                    } else {
+//                        sender.world.dropItem(sender.location, playerHead)
+//                        MessageUtils.formattedMessage(sender, "Your inventory is full. ${playerHead}'s head was dropped on the ground.")
+//                    }
+//                } else { MessageUtils.formattedMessage(sender,"That player does not exist!") }
+//            }
         }
         return true
     }
@@ -83,7 +112,7 @@ class Admin : CommandExecutor, TabCompleter {
                 }
             }
 
-            "kick" -> {
+            "kick", "head" -> {
                 if (args.size == 1) {
                     return Bukkit.getOnlinePlayers().map{it.name}.filter{it.startsWith(args[0], ignoreCase = true)}.toMutableList()
                 }

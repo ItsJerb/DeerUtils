@@ -47,13 +47,6 @@ commands:
     permission: deerutils.kick
     permission-message: "You cannot kick players"
 
-  nickname:
-    description: "Sets a nickname for yourself"
-    usage: "/nickname"
-    aliases: [nick]
-    permission: deerutils.nickname
-    permission-message: "You cannot set a nickname for yourself"
-
   warp:
     description: "Teleports the player to a world warp"
     usage: "/warp <name>"
@@ -113,7 +106,7 @@ commands:
 
   head:
     description: "Gives yourself a player's head"
-    usage: "/head [player]"
+    usage: "/head <player>"
     permission: deerutils.head
     permission-message: "You cannot give yourself player heads"
 
