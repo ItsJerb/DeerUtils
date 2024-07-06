@@ -104,12 +104,6 @@ commands:
     permission: deerutils.afk
     permission-message: "You cannot set yourself as AFK"
 
-  head:
-    description: "Gives yourself a player's head"
-    usage: "/head <player>"
-    permission: deerutils.head
-    permission-message: "You cannot give yourself player heads"
-
   spawn:
     description: "Teleports the player to spawn"
     usage: "/spawn"

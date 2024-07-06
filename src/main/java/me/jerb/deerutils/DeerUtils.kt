@@ -4,7 +4,9 @@ import me.jerb.deerutils.commands.*
 import me.jerb.deerutils.listeners.PlayerEvents
 import net.luckperms.api.LuckPerms
 import net.luckperms.api.LuckPermsProvider
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
+import java.io.IOException
 
 class DeerUtils : JavaPlugin() {
     private lateinit var luckPerms : LuckPerms
@@ -12,7 +14,7 @@ class DeerUtils : JavaPlugin() {
     private  lateinit var admin: Admin
     private lateinit var messaging: Messaging
     override fun onEnable() {
-        teleporting = Teleporting()
+        teleporting = Teleporting(this)
         admin = Admin()
         messaging = Messaging()
         this.getCommand("spawn")?.setExecutor(teleporting)
@@ -41,8 +43,17 @@ class DeerUtils : JavaPlugin() {
             logger.severe("LuckPerms failed to load. Disabling DeerUtils...")
             server.pluginManager.disablePlugin(this)
         }
+
         logger.info("LuckPerms found and initialized!")
         server.pluginManager.registerEvents(PlayerEvents(this, luckPerms), this)
+
+        val pluginFolder = Bukkit.getPluginManager().getPlugin("DeerUtils")?.dataFolder ?: throw IOException("Plugin folder not found")
+        if (!pluginFolder.exists()) {
+            pluginFolder.mkdirs()
+        }
+
+        saveDefaultConfig()
+
         logger.info("DeerUtils has been loaded!")
     }
 

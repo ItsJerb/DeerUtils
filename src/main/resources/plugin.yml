@@ -38,13 +38,13 @@ commands:
     description: "Sets the player's gamemode"
     usage: "/gamemode <gamemode>"
     aliases: [gm]
-    permission: deerutils.gamemode
+    permission: deerutils.admin.gamemode
     permission-message: "You do not have permission to change your gamemode"
 
   kick:
     description: "Kicks the target player"
     usage: "/kick <player> <reason>"
-    permission: deerutils.kick
+    permission: deerutils.admin.kick
     permission-message: "You cannot kick players"
 
   warp:
@@ -95,7 +95,7 @@ commands:
     description: "Broadcasts a message to all players as the server"
     usage: "/broadcast"
     aliases: [bc]
-    permission: deerutils.broadcast
+    permission: deerutils.admin.broadcast
     permission-message: "You cannot broadcast messages"
 
   afk:

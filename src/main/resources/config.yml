@@ -1,1 +1,7 @@
+#   DeerUtils   #
+#    Config     #
 
+# Created by: ItsJerb
+
+# Default maximum for homes is 3
+maxHomes: 7

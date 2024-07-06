@@ -10,11 +10,12 @@ import org.bukkit.command.TabCompleter
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import java.io.IOException
 import java.util.*
 
-class Teleporting : CommandExecutor, TabCompleter {
+class Teleporting(private val plugin: JavaPlugin) : CommandExecutor, TabCompleter {
     private val teleportRequests = mutableMapOf<UUID, UUID>()
     private val lastLocations = mutableMapOf<UUID, Location>()
     private val teleportToggles = mutableMapOf<UUID, Boolean>()
@@ -105,8 +106,9 @@ class Teleporting : CommandExecutor, TabCompleter {
                 }
                 val homeName = args[0]
                 val homes = getPlayerHomes(sender.uniqueId)
-                if (homes.keys.size >= 5 && !homes.containsKey(homeName)) {
-                    MessageUtils.formattedMessage(sender, "You can only set up to 5 homes.")
+                val maxHomes = plugin.config.getInt("maxHomes", 3)
+                if (homes.keys.size >= maxHomes && !homes.containsKey(homeName)) {
+                    MessageUtils.formattedMessage(sender, "You can only set up to $maxHomes homes.")
                     return true
                 }
                 homes[homeName] = sender.location
@@ -243,7 +245,7 @@ class Teleporting : CommandExecutor, TabCompleter {
         when (label.lowercase()) {
             "tpa" -> {
                 if (args.size == 1) {
-                    return Bukkit.getOnlinePlayers().map { it.name }.toMutableList()
+                    return Bukkit.getOnlinePlayers().map{it.name}.filter{it.startsWith(args[0], ignoreCase = true)}.toMutableList()
                 }
             }
             "home", "delhome" -> {
